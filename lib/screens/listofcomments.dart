@@ -1,58 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_test/models/Users.dart';
-import 'package:flutter_app_test/screens/commets_page.dart';
+import 'package:flutter_app_test/models/Comments.dart';
 import 'package:provider/provider.dart';
-//import '../models/Comments.dart';
 
-class Home extends StatelessWidget {
+class Listofcomments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Users> users = Provider.of<List<Users>>(context);
+    List<Comments> commentslist = Provider.of<List<Comments>>(context);
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Post request'),
+          title: Text('Comments request'),
         ),
-        body: (users == null)
+        body: (commentslist == null)
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : ListView.builder(
-                itemCount: users.length,
+                itemCount: commentslist.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(users[index].userId.toString(),
+                    title: Text(commentslist[index].postId.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 25,
                         )),
                     subtitle: Column(
                       children: <Widget>[
-                        Text(users[index].id.toString(),
+                        Text(commentslist[index].id.toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 25,
                             )),
-                        Text(users[index].title,
+                        Text(commentslist[index].name,
                             style: TextStyle(
-                              color: Colors.green,
+                              color: Colors.lightGreen,
                               fontWeight: FontWeight.w500,
                               fontSize: 17,
                             )),
-                        Text(users[index].body,
+                        Text(commentslist[index].body,
                             style: TextStyle(
-                              color: Colors.green,
+                              color: Colors.lightGreen,
                               backgroundColor: Colors.limeAccent,
                               fontWeight: FontWeight.w500,
                               fontSize: 17,
                             )),
                       ],
                     ),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              UsersPage(id: users[index].id)));
-                    },
+//                    onTap: () {
+//                      Navigator.of(context).push(MaterialPageRoute(
+//                          builder: (context) =>
+//                              UsersPage(id: users[index].id)));
+//                    },
                   );
                 }));
   }

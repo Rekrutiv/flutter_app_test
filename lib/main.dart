@@ -7,6 +7,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   final UsersService usersService = UsersService();
+
   @override
   Widget build(BuildContext context) {
     return FutureProvider(
